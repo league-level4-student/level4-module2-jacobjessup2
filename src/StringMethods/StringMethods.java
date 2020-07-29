@@ -3,6 +3,8 @@ package StringMethods;
 import java.util.Arrays;
 import java.util.Base64;
 
+import org.junit.platform.commons.util.StringUtils;
+
 /*
 Visit the JavaDocs for the String class to view everything you can do with a String.  
 
@@ -73,6 +75,7 @@ public class StringMethods {
 			return p3;
 		}
 		return null;
+		
 	}
 	
 	
@@ -92,24 +95,40 @@ public class StringMethods {
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		return 0;
+		int total = 0;
+		int start = 0;
+		while(s.indexOf(substring, start) != -1) {
+			System.out.println(s.indexOf(substring, start));
+			start+=1+s.indexOf(substring,start);
+			total++;
+		}
+		return total;
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-		return null;
+		String change = Utilities.encrypt(s.getBytes(), (byte)key);
+		return change;
 	}
 
 	// Call Utilities.decrypt to decrypt the cyphertext
 	public static String decrypt(String s, char key) {
-		return null;
+		String change = Utilities.decrypt(s, (byte)key);
+		return change;
 	}
 
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		int total = 0;
+		String[] arr = s.split(" ");
+		for (int i = 0; i < arr.length; i++) {
+			if(arr[i].endsWith(substring)) {
+				total++;
+			}
+		}
+		return total;
 	}
 	
 
